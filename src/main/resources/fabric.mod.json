@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "compoundnuzlocke",
+  "version": "${version}",
+  "name": "CompoundNuzlocke",
+  "description": "Nuzlocke Mod for the Compound Nuzlocke server.",
+  "authors": [],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "environment": "server",
+  "entrypoints": {
+    "main": [
+      "me.unariginal.compoundnuzlocke.CompoundNuzlocke"
+    ]
+  },
+  "mixins": [
+    "compoundnuzlocke.mixins.json",
+    {
+      "config": "compoundnuzlocke.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}",
+    "cobblemon": ">=${cobblemon_version}"
+  }
+}
