@@ -2,6 +2,7 @@ package me.unariginal.compoundnuzlocke.commands;
 
 import com.mojang.brigadier.context.CommandContext;
 import me.lucko.fabric.api.permissions.v0.Permissions;
+import me.unariginal.compoundnuzlocke.rules.LimitedEncounters;
 import me.unariginal.compoundnuzlocke.rules.PokemonDeath;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.server.command.CommandManager;
@@ -33,6 +34,7 @@ public class NuzlockeCommands {
     private int start(CommandContext<ServerCommandSource> ctx) {
         // TODO: Start
         PokemonDeath deathRule = new PokemonDeath();
+        LimitedEncounters encountersRule = new LimitedEncounters();
         return 1;
     }
 }
