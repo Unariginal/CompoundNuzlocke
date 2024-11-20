@@ -3,6 +3,7 @@ package me.unariginal.compoundnuzlocke.commands;
 import com.mojang.brigadier.context.CommandContext;
 import me.lucko.fabric.api.permissions.v0.Permissions;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 
@@ -29,6 +30,8 @@ public class NuzlockeCommands {
 
     private int start(CommandContext<ServerCommandSource> ctx) {
         // TODO: Start
+        PlayerEntity player = ctx.getSource().getPlayer();
+        player.getWorld().getBiome(player.getBlockPos());
         return 1;
     }
 }
