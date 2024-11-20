@@ -5,6 +5,9 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/CompoundNuzlocke.client.iml" filepath="$PROJECT_DIR$/.idea/modules/CompoundNuzlocke.client.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/CompoundNuzlocke.main.iml" filepath="$PROJECT_DIR$/.idea/modules/CompoundNuzlocke.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/CompoundNuzlocke.test.iml" filepath="$PROJECT_DIR$/.idea/modules/CompoundNuzlocke.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/IdeaProjects.CompoundNuzlocke.main.iml" filepath="$PROJECT_DIR$/.idea/modules/IdeaProjects.CompoundNuzlocke.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/IdeaProjects.CompoundNuzlocke.test.iml" filepath="$PROJECT_DIR$/.idea/modules/IdeaProjects.CompoundNuzlocke.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/me.unariginal.CompoundNuzlocke.client.iml" filepath="$PROJECT_DIR$/.idea/modules/me.unariginal.CompoundNuzlocke.client.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/me.unariginal.CompoundNuzlocke.main.iml" filepath="$PROJECT_DIR$/.idea/modules/me.unariginal.CompoundNuzlocke.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/me.unariginal.CompoundNuzlocke.test.iml" filepath="$PROJECT_DIR$/.idea/modules/me.unariginal.CompoundNuzlocke.test.iml" />
     </modules>
