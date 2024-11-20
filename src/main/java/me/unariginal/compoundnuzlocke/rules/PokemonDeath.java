@@ -1,12 +1,9 @@
 package me.unariginal.compoundnuzlocke.rules;
 
 import com.cobblemon.mod.common.Cobblemon;
-import com.cobblemon.mod.common.CobblemonBlocks;
 import com.cobblemon.mod.common.api.Priority;
 import com.cobblemon.mod.common.api.events.CobblemonEvents;
-import com.cobblemon.mod.common.api.interaction.ServerPlayerActionRequest;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
-import com.cobblemon.mod.common.datafixer.CobblemonSchemas;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import kotlin.Unit;
 import net.minecraft.server.network.ServerPlayerEntity;
