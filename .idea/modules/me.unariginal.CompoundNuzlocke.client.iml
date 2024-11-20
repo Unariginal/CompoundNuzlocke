@@ -5,7 +5,9 @@
       <configuration>
         <autoDetectTypes>
           <platformType>MIXIN</platformType>
+          <platformType>MCP</platformType>
           <platformType>FABRIC</platformType>
+          <platformType>ARCHITECTURY</platformType>
         </autoDetectTypes>
         <projectReimportVersion>1</projectReimportVersion>
       </configuration>
