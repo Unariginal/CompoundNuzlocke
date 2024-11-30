@@ -1,6 +1,7 @@
 package me.unariginal.compoundnuzlocke;
 
 import me.unariginal.compoundnuzlocke.commands.NuzlockeCommands;
+import me.unariginal.compoundnuzlocke.config.Config;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.minecraft.server.MinecraftServer;
@@ -13,6 +14,7 @@ public class CompoundNuzlocke implements ModInitializer {
 
     private static CompoundNuzlocke instance;
     public MinecraftServer mcServer;
+    public Config config;
 
     @Override
     public void onInitialize() {
@@ -22,6 +24,7 @@ public class CompoundNuzlocke implements ModInitializer {
         new NuzlockeCommands();
         ServerLifecycleEvents.SERVER_STARTED.register(server -> {
             mcServer = server;
+            config = new Config();
         });
     }
 

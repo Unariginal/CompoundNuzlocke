@@ -12,7 +12,7 @@ import java.nio.file.Path;
 import java.util.*;
 
 public class Config {
-    private final Map<UUID, PlayerData> playerDataMap = new HashMap<>();
+    private final Map<String, PlayerData> playerDataMap = new HashMap<>();
 
     public Config() {
         try {
@@ -79,7 +79,7 @@ public class Config {
 
                 JsonObject playerDataRootObject = root.getAsJsonObject();
 
-                UUID playerUUID = UUID.fromString(playerDataRootObject.get("uuid").getAsString());
+                String playerUUID = playerDataRootObject.get("uuid").getAsString();
                 String username = playerDataRootObject.get("username").getAsString();
                 boolean runActive= playerDataRootObject.get("runActive").getAsBoolean();
                 JsonObject rules = playerDataRootObject.getAsJsonObject("rules");
@@ -90,12 +90,28 @@ public class Config {
                 }
 
                 PlayerData data = new PlayerData(playerUUID, username, runActive, ruleList);
-                playerDataMap.put(UUID.fromString(playerData.getName().replaceAll(".json", "")), data);
+                playerDataMap.put(playerData.getName().replaceAll(".json", ""), data);
             }
         }
     }
 
-    public Map<UUID, PlayerData> getPlayerDataMap() {
+    public File createPlayerFile(String uuid) throws IOException {
+        Path playerDataPath = FabricLoader.getInstance().getConfigDir().resolve("CompoundNuzlocke/playerdata/" + uuid + ".json");
+        File playerData = playerDataPath.toFile();
+        if (!playerData.exists()) {
+            playerData.createNewFile();
+        }
+
+        return playerData;
+    }
+
+    public void updatePlayerData(String uuid, String username, boolean runActive, ArrayList<JsonObject> rules) {
+        PlayerData data = new PlayerData(uuid,username,runActive,rules);
+        playerDataMap.remove(uuid);
+        playerDataMap.put(uuid, data);
+    }
+
+    public Map<String, PlayerData> getPlayerDataMap() {
         return playerDataMap;
     }
 }
