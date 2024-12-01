@@ -83,13 +83,13 @@ public class Config {
                 String username = playerDataRootObject.get("username").getAsString();
                 boolean runActive= playerDataRootObject.get("runActive").getAsBoolean();
                 JsonObject rules = playerDataRootObject.getAsJsonObject("rules");
-                ArrayList<JsonObject> ruleList = new ArrayList<>();
-                for (String ruleName : rules.keySet()) {
-                    JsonObject ruleObject = rules.getAsJsonObject(ruleName);
-                    ruleList.add(ruleObject);
-                }
+//                ArrayList<JsonObject> ruleList = new ArrayList<>();
+//                for (String ruleName : rules.keySet()) {
+//                    JsonObject ruleObject = rules.getAsJsonObject(ruleName);
+//                    ruleList.add(ruleObject);
+//                }
 
-                PlayerData data = new PlayerData(playerUUID, username, runActive, ruleList);
+                PlayerData data = new PlayerData(playerUUID, username, runActive, rules);
                 playerDataMap.put(playerData.getName().replaceAll(".json", ""), data);
             }
         }
@@ -105,7 +105,7 @@ public class Config {
         return playerData;
     }
 
-    public void updatePlayerData(String uuid, String username, boolean runActive, ArrayList<JsonObject> rules) {
+    public void updatePlayerData(String uuid, String username, boolean runActive, JsonObject rules) {
         PlayerData data = new PlayerData(uuid,username,runActive,rules);
         playerDataMap.remove(uuid);
         playerDataMap.put(uuid, data);

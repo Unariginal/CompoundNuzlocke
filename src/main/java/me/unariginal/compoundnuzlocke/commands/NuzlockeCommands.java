@@ -12,16 +12,12 @@ import me.unariginal.compoundnuzlocke.rules.CancelTrade;
 import me.unariginal.compoundnuzlocke.rules.LimitedEncounters;
 import me.unariginal.compoundnuzlocke.rules.PokemonDeath;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 
 import java.io.*;
-import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 public class NuzlockeCommands {
     CompoundNuzlocke cn = CompoundNuzlocke.getInstance();
@@ -65,35 +61,10 @@ public class NuzlockeCommands {
                 try {
                     File playerFile = cn.config.createPlayerFile(uuid);
 
-                    Path playerDataPath = FabricLoader.getInstance().getConfigDir().resolve("CompoundNuzlocke/playerdata/" + uuid + ".json");
-                    File playerData = playerDataPath.toFile();
-//                    HashMap<String, Object> data = new HashMap<>();
-//                    data.put("uuid", uuid);
-//                    data.put("username", username);
-//
-//                    HashMap<String, Object> rules = new HashMap<>();
-//
-//                    HashMap<String, Object> limited_encounters = new HashMap<>();
-//                    limited_encounters.put("enabled", true);
-//                    List<String> biomesUsed = new ArrayList<>();
-//                    limited_encounters.put("biomesUsed", biomesUsed);
-//                    limited_encounters.put("shiny_override", true);
-//
-//                    HashMap<String, Object> pokemon_death = new HashMap<>();
-//                    pokemon_death.put("enabled", true);
-//
-//                    HashMap<String, Object> disable_trades = new HashMap<>();
-//                    disable_trades.put("enabled", false);
-//
-//                    rules.put("limited_encounters", limited_encounters);
-//                    rules.put("pokemon_death", pokemon_death);
-//                    rules.put("disable_trades", disable_trades);
-//
-//                    data.put("rules", rules);
-
                     JsonObject root = new JsonObject();
                     root.addProperty("uuid", uuid);
                     root.addProperty("username", username);
+                    root.addProperty("runActive", true);
 
                     JsonObject rulesObj = new JsonObject();
 
@@ -115,22 +86,20 @@ public class NuzlockeCommands {
 
                     root.add("rules", rulesObj);
 
-                    playerData.setWritable(true);
-                    playerData.setReadable(true);
-
                     Gson gson = new GsonBuilder()
                             .setPrettyPrinting()
                             .create();
-                    Writer writer = new FileWriter(playerData);
+                    Writer writer = new FileWriter(playerFile);
                     gson.toJson(root, writer);
 
-                    ArrayList<JsonObject> ruleList = new ArrayList<>();
-                    for (String ruleName : rulesObj.keySet()) {
-                        JsonObject ruleObject = rulesObj.getAsJsonObject(ruleName);
-                        ruleList.add(ruleObject);
-                    }
+//                    ArrayList<JsonObject> ruleList = new ArrayList<>();
+//                    for (String ruleName : rulesObj.keySet()) {
+//                        JsonObject ruleObject = rulesObj.getAsJsonObject(ruleName);
+//                        ruleList.add(ruleObject);
+//                    }
 
-                    cn.config.updatePlayerData(uuid, username, true, ruleList);
+                    writer.close();
+                    cn.config.updatePlayerData(uuid, username, true, rulesObj);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
