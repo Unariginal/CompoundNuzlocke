@@ -1,5 +1,10 @@
 package me.unariginal.compoundnuzlocke.commands;
 
+import com.cobblemon.mod.common.api.spawning.CobblemonSpawnPools;
+import com.cobblemon.mod.common.api.spawning.condition.SpawningCondition;
+import com.cobblemon.mod.common.api.spawning.context.RegisteredSpawningContext;
+import com.cobblemon.mod.common.api.spawning.context.SpawningContext;
+import com.cobblemon.mod.common.api.spawning.detail.SpawnDetail;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
@@ -41,23 +46,18 @@ public class NuzlockeCommands {
     }
 
     private int reload(CommandContext<ServerCommandSource> ctx) {
-        // TODO: Reload
         cn.config = new Config();
         return 1;
     }
 
     private int start(CommandContext<ServerCommandSource> ctx) {
-        ServerPlayerEntity player = ctx.getSource().getPlayer();
-        String uuid = player.getUuidAsString();
-        String username = player.getName().getString();
-
-        // TODO: Start
-        PokemonDeath deathRule = new PokemonDeath();
-        CancelTrade cancelTrade = new CancelTrade();
-        LimitedEncounters encountersRule = new LimitedEncounters();
-
         if (ctx.getSource().isExecutedByPlayer()) {
-            if (ctx.getSource().getPlayer() != null) {
+            ServerPlayerEntity player = ctx.getSource().getPlayer();
+
+            if (player != null) {
+                String uuid = player.getUuidAsString();
+                String username = player.getName().getString();
+
                 try {
                     File playerFile = cn.config.createPlayerFile(uuid);
 
@@ -91,12 +91,6 @@ public class NuzlockeCommands {
                             .create();
                     Writer writer = new FileWriter(playerFile);
                     gson.toJson(root, writer);
-
-//                    ArrayList<JsonObject> ruleList = new ArrayList<>();
-//                    for (String ruleName : rulesObj.keySet()) {
-//                        JsonObject ruleObject = rulesObj.getAsJsonObject(ruleName);
-//                        ruleList.add(ruleObject);
-//                    }
 
                     writer.close();
                     cn.config.updatePlayerData(uuid, username, true, rulesObj);

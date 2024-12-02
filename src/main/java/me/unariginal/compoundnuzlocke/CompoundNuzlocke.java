@@ -2,6 +2,9 @@ package me.unariginal.compoundnuzlocke;
 
 import me.unariginal.compoundnuzlocke.commands.NuzlockeCommands;
 import me.unariginal.compoundnuzlocke.config.Config;
+import me.unariginal.compoundnuzlocke.rules.CancelTrade;
+import me.unariginal.compoundnuzlocke.rules.LimitedEncounters;
+import me.unariginal.compoundnuzlocke.rules.PokemonDeath;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.minecraft.server.MinecraftServer;
@@ -25,6 +28,10 @@ public class CompoundNuzlocke implements ModInitializer {
         ServerLifecycleEvents.SERVER_STARTED.register(server -> {
             mcServer = server;
             config = new Config();
+
+            new PokemonDeath();
+            new CancelTrade();
+            new LimitedEncounters();
         });
     }
 
